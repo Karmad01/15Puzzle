@@ -4,11 +4,11 @@ with arrow keys till the numbers are arranged in increasing order.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //for time()
+#include <stdbool.h>
 #include "include/conio.h" /*User defined library containing the functions,
                              getch(), getche() and gotoxy()*/
 #include "include/game.h"                             
 
-//Fills the array randomly leaving the last value 0
 void arr_random_fill(int *arr)
 {
   int n[15], i, index, upper, lower, j;
@@ -32,7 +32,27 @@ void arr_random_fill(int *arr)
   }
 }                             
 
-//Prints the array as a 4x4 grid
+bool solvable(int *arr)
+{
+  int inv_count = 0;
+  bool retval = false;
+  for (int i = 0; i < 14; i++)
+  {
+    for (int j = i + 1; j < 15; j++)
+    {
+      if (arr[i] > arr[j]) //count pairs (a, b) such that a appears before b, but a > b, not counting the blank.
+      {
+        inv_count++;
+      }
+    }
+  }
+  if (inv_count % 2 == 0) //Blank is on the last row which is an odd row. Hence if inv_count is even, it is solvable.
+  {
+    retval = true;
+  }
+  return retval;
+}
+
 void arr_print(int *arr, int c)
 {
   system("clear");

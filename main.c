@@ -2,6 +2,7 @@
 contain numbers from 1 to 15 in a random order. Blank cell is moved
 with arrow keys till the numbers are arranged in increasing order.*/
 #include <stdio.h>
+#include <stdbool.h>
 #include "include/conio.h" /*User defined library containing the functions,
                              getch(), getche() and gotoxy()*/
 #include "include/game.h"  
@@ -11,10 +12,14 @@ int main(int argc, char const *argv[])
   int num[16] = {0}; //Stores the grid as a 1D array
   int count = 0; //Stores the number of moves
   int blank = 15;//Tracks where the blank (i.e., the 0) in num 
-  int check = 1; //Checks if the game is solved (0 - solved, 1 - unsolved)
+  bool solved = false; //Checks if the game is solved
   int i; //Loop, swap variable
   char key; //Stores the value of pressed key
   arr_random_fill(num);
+  while (!solvable(num))
+  {
+    arr_random_fill(num);
+  }
   arr_print(num, count);
   key = getkey();
   while (key == 'A' || key == 'B' || key == 'C' || key == 'D')
@@ -85,16 +90,16 @@ int main(int argc, char const *argv[])
     }
     count++;
     arr_print(num, count);
-    check = 0;
+    solved = true;
     for (i = 0; i <= 14; i++)
     {
       if(num[i] != i + 1)
       {
-        check = 1;
+        solved = false;
         break;
       }
     }
-    if (check == 0)
+    if (solved)
     {
       printf("\nYou have completed the game in %d moves.\n", count);
       break;
@@ -104,7 +109,7 @@ int main(int argc, char const *argv[])
       key = getkey();
     }
   }
-  if (check == 1)
+  if (!solved)
   {
     printf("\nYou have exited the game without completing it.\n");
   }
