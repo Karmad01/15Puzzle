@@ -1,4 +1,4 @@
-![Screenshot_20210617_215706](https://user-images.githubusercontent.com/68813302/122437214-21ebd300-cfb7-11eb-8b9c-e129a35059a0.png)
+![Screenshot_20210619_224928](https://user-images.githubusercontent.com/68813302/122650447-ab82d880-d150-11eb-89ad-05fb64770c90.png)
 # 15Puzzle
 
 Arrange the numbers in the correct order using arrow keys
