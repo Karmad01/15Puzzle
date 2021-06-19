@@ -11,6 +11,10 @@
     Returns true if solvable*/
   extern bool solvable(int *arr);
 
+  /*Checks if the game is solved
+    Returns true if solved*/
+  extern bool solved(int *arr);  
+
   //Prints the array as a 4x4 grid
   extern void arr_print(int *arr, int c);
 #endif  
